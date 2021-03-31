@@ -1,4 +1,4 @@
-package gocean
+package main
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ func main() {
 
      tokenFlag := flag.String("token", "", "Digital Ocean API Token")
      flag.Parse()
-     CreateTokenFile(*tokenFlag)
+     token.CreateTokenFile(*tokenFlag)
 
      fmt.Println("test successful")	
 
