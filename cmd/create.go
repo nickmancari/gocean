@@ -1,4 +1,4 @@
-package main
+package create
 
 import (
 
@@ -6,6 +6,8 @@ import (
 
 )
 
-func CreateDroplet() {
+func CreateDroplet(name string) {
 
+	
+	
 }
