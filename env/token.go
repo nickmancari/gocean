@@ -13,7 +13,7 @@ func CreateTokenFile(tokenInput string) {
 		log.Fatal(err)
 	}
 
-	file.Write([]byte(tokenInput + "\n"))
+	file.Write([]byte(tokenInput))
 	file.Close()
 }
 
