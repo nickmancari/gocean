@@ -1,26 +1,35 @@
 package main
 
 import (
-	"fmt"
 	"flag"
-	"github.com/nickmancari/gocean/env"
-	"github.com/nickmancari/gocean/cmd"
+	"fmt"
+	"io/ioutil"
+
+	commands "github.com/nickmancari/gocean/cmd"
+	token "github.com/nickmancari/gocean/env"
 )
 
 func main() {
 
-	tokenFlag := flag.String("token", "", "Digital Ocean API Token")
-	createFlag := flag.String("create", "Droplet_Name", "Creates Droplet")
-//	destroyFlag := flag.String()
-	
+	tokenFlag := flag.Bool("token", false, "Digital Ocean API Token")
+//	createFlag := flag.String("create", "Droplet_Name", "Creates Droplet")
+	//	destroyFlag := flag.String()
+
 	flag.Parse()
-
-	token.CreateTokenFile(*tokenFlag)
-
-	commands.CreateDroplet(*createFlag)
-//	commands.DestroyDroplet(*destroyFlag)
 	
+	if *tokenFlag {
+		token.CreateTokenFile("test123")
+		readTokenFile, err := ioutil.ReadFile(".token")
+		if err != nil {
+			fmt.Println(err)
+		}
+		token := string(readTokenFile)
 
-	fmt.Println("test successful")	
+		commands.CreateDroplet("test-droplet", token)
+		return
+	}
+	//	commands.DestroyDroplet(*destroyFlag)
+
+	fmt.Println("test successful")
 
 }
