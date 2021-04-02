@@ -5,7 +5,6 @@ import (
 	"os"
 )
 
-
 func CreateTokenFile(tokenInput string) {
 
 	file, err := os.Create(".token")
@@ -16,4 +15,3 @@ func CreateTokenFile(tokenInput string) {
 	file.Write([]byte(tokenInput))
 	file.Close()
 }
-
