@@ -5,35 +5,46 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+
+	token "github.com/nickmancari/gocean/env"
 )
 
-func CreateDroplet(token string) (int, error) {
+func CreateDroplet(flag string) interface{} {
+	if flag == "" {
+		return 
+	} else {
+		apiAddress := "https://api.digitalocean.com/v2/droplets"
+		token := token.ReadTokenFile(".token")
+		name := []byte(flag)
 
-	apiAddress := "https://api.digitalocean.com/v2/droplets"
+		jsonData := []byte(`{"name": name, "region": "nyc3", "size": "s-1vcpu-1gb", "image": "ubuntu-16-04-x64", "backups": "false", "ipv6": true, "user_data": null, "private_networking": null, "volumes": null}`)
 
-	jsonData := []byte(`{"name": "example", "region": "nyc3", "size": "s-1vcpu-1gb", "image": "ubuntu-16-04-x64", "backups": "false", "ipv6": true, "user_data": null, "private_networking": null, "volumes": null}`)
+		request, err := http.NewRequest("POST", apiAddress, bytes.NewBuffer(jsonData))
+		if err != nil {
+			fmt.Println("http error: ", err)
+		}
 
-	request, err := http.NewRequest("POST", apiAddress, bytes.NewBuffer(jsonData))
-	if err != nil {
-		fmt.Println("http error: ", err)
+		request.Header.Add("Content-Type", "application/json")
+		request.Header.Add("Authorization", "Bearer "+token)
+
+		client := &http.Client{}
+		response, err := client.Do(request)
+		if err != nil {
+			fmt.Println("Client error: ", err)
+		}
+		defer response.Body.Close()
+
+		body, err := ioutil.ReadAll(response.Body)
+		if err != nil {
+			fmt.Println("Read Error: ", err)
+		}
+		r, err := fmt.Println("response Body:", string(body))
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		return r
 	}
-
-	request.Header.Add("Content-Type", "application/json")
-	request.Header.Add("Authorization", "Bearer "+token)
-
-	client := &http.Client{}
-	response, err := client.Do(request)
-	if err != nil {
-		fmt.Println("Client error: ", err)
-	}
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		fmt.Println("Read Error: ", err)
-	}
-	r, err := fmt.Println("response Body:", string(body))
-	return r, err
 }
 
 func DestroyDroplet() {
