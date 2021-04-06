@@ -8,9 +8,9 @@ import (
 	"strings"
 )
 
-func CreateTokenFile(tokenInput string) {
+func CreateTokenFile(t string) {
 
-	if tokenInput == "" {
+	if t == "" {
 		return
 	} else {
 		file, err := os.Create(".token")
@@ -18,7 +18,7 @@ func CreateTokenFile(tokenInput string) {
 			log.Fatal(err)
 		}
 
-		file.Write([]byte(tokenInput))
+		file.Write([]byte(t))
 		file.Close()
 	}
 }
