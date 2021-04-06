@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 
 	commands "github.com/nickmancari/gocean/cmd"
 	token "github.com/nickmancari/gocean/env"
@@ -11,11 +12,13 @@ var tokenFlag = flag.String("token", "", "Creates Token File For DO API Connecti
 var createFlag = flag.String("create", "", "Create a Droplet")
 
 func init() {
-	flag.BoolVar(createFlag, "s", "", "Add")
+	flag.StringVar(createFlag, "s", "", "Add")
 }
 
 func main() {
 	flag.Parse()
 	token.CreateTokenFile(*tokenFlag)
-	commands.CreateDroplet(*createFlag)
+	r := commands.CreateDroplet(*createFlag)
+
+	fmt.Println(r)
 }
