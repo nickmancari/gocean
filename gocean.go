@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 
 	commands "github.com/nickmancari/gocean/cmd"
 	token "github.com/nickmancari/gocean/env"
@@ -18,7 +17,6 @@ func init() {
 func main() {
 	flag.Parse()
 	token.CreateTokenFile(*tokenFlag)
-	r := commands.CreateDroplet(*createFlag)
+	commands.CreateDroplet(*createFlag)
 
-	fmt.Println(r)
 }

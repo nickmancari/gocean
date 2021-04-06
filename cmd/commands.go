@@ -29,7 +29,7 @@ func CreateDroplet(flag string) interface{} {
 	if flag == "" {
 		s, err := fmt.Println("")
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("Error: ", err)
 		}
 		return s
 	} else {
@@ -74,7 +74,7 @@ func DestroyDroplet(flag string) interface{} {
 	if flag == "" {
 		s, err := fmt.Println("")
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("Error: ", err)
 		}
 		return s
 	} else {
