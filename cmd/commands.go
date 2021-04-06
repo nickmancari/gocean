@@ -10,6 +10,10 @@ import (
 	token "github.com/nickmancari/gocean/env"
 )
 
+const (
+	apiAdress = "https://api.digitalocean.com/v2/droplets"
+)
+
 type OceanJson struct {
 	Name               string `json: name`
 	Region             string `json: region`
@@ -29,7 +33,7 @@ func CreateDroplet(flag string) int {
 		}
 		return i
 	} else {
-		apiAddress := "https://api.digitalocean.com/v2/droplets"
+		
 		token := token.ReadTokenFile(".token")
 		name := flag
 
@@ -66,6 +70,19 @@ func CreateDroplet(flag string) int {
 	}
 }
 
-func DestroyDroplet() {
+func DestroyDroplet(flag string) int {
+	if flag == "" {
+		i, err := fmt.Println(1)
+		if err != nil {
+			fmt.Println(err)
+		}
+		return i
+	} else {
+		token := token.ReadTokenFile(".token")
+		dropletName := flag
+
+}
+
+func GetDroplet() {
 
 }
