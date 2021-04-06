@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	apiAddress = "https://api.digitalocean.com/v2/droplets"
+	apiAdress = "https://api.digitalocean.com/v2/droplets"
 )
 
 type OceanJson struct {
@@ -25,15 +25,15 @@ type OceanJson struct {
 	Private_Networking string `json: private_networking`
 }
 
-func CreateDroplet(flag string) interface{} {
+func CreateDroplet(flag string) int {
 	if flag == "" {
-		s, err := fmt.Println("")
+		i, err := fmt.Println(1)
 		if err != nil {
 			fmt.Println(err)
 		}
-		return s
+		return i
 	} else {
-
+		
 		token := token.ReadTokenFile(".token")
 		name := flag
 
@@ -70,22 +70,17 @@ func CreateDroplet(flag string) interface{} {
 	}
 }
 
-func DestroyDroplet(flag string) interface{} {
+func DestroyDroplet(flag string) int {
 	if flag == "" {
-		s, err := fmt.Println("")
+		i, err := fmt.Println(1)
 		if err != nil {
 			fmt.Println(err)
 		}
-		return s
+		return i
 	} else {
 		token := token.ReadTokenFile(".token")
 		dropletName := flag
-		r, err := fmt.Printf("Deleting: %s %s", dropletName, token)
-		if err != nil {
-			fmt.Println(err)
-		}
-		return r
-	}
+
 }
 
 func GetDroplet() {
