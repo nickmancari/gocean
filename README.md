@@ -14,6 +14,7 @@ $ gocean --create testdroplet
 - Digital Ocean Account
 - Digital Ocean API Token
 
+<br><br>
 ### Setup:
 
 Install Gocean:
