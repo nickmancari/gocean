@@ -1,8 +1,9 @@
 ![](https://github.com/nickmancari/gocean/blob/master/img/gocean_logo.png)
 <h1 align='center'>Digital Ocean  CLI Tool</h1>
-<h2 align='center'>Manage Droplets From the Commandline With Digital Ocean APIs</h2>
+<h2 align='center'>Manage Droplets From the Command Line With Digital Ocean APIs</h2>
 <br>
-# Using Gocean
+
+# Using Gocean:
 
 Gocean takes simple flags to manage Droplets from the command line:
 ```
