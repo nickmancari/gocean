@@ -96,7 +96,7 @@ func GetDroplet(flag string) interface{} {
 		}
 		return s
 	} else {
-		request, err := http.NewRequest("GET", apiAddress + "/" + flag, nil)
+		request, err := http.NewRequest("GET", apiAddress+"/"+flag, nil)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -124,6 +124,39 @@ func GetDroplet(flag string) interface{} {
 	}
 }
 
-func RebootDroplet() {
+func RebootDroplet(flag string) interface{} {
+	if flag == "" {
+		s, err := fmt.Println("")
+		if err != nil {
+			fmt.Println(err)
+		}
+		return s
+	} else {
+		jsonData := []byte(`{"type":"reboot"}`)
+		request, err := http.NewRequest("POST", apiAddress+"/"+flag+"/actions", bytes.NewBuffer(jsonData))
+		if err != nil {
+			fmt.Println(err)
+		}
+		request.Header.Add("Content-Type", "application/json")
+		request.Header.Add("Authorization", "Bearer "+apiToken)
+
+		client := &http.Client{}
+		response, err := client.Do(request)
+		if err != nil {
+			fmt.Println(err)
+		}
+		defer response.Body.Close()
+
+		body, err := ioutil.ReadAll(response.Body)
+		if err != nil {
+			fmt.Println(err)
+		}
+		r, err := fmt.Println("Response Body: ", string(body))
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		return r
+	}
 
 }

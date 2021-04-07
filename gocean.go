@@ -11,6 +11,7 @@ var tokenFlag = flag.String("token", "", "Creates Token File For DO API Connecti
 var createFlag = flag.String("create", "", "Create a Droplet")
 var destroyFlag = flag.String("destroy", "", "Destroys Specified Droplet")
 var getFlag = flag.String("droplet", "", "Get Info On Droplet")
+var rebootFlag = flag.String("reboot", "", "Reboot Specific Droplet")
 
 func init() {
 	flag.StringVar(createFlag, "s", "", "Add")
@@ -22,5 +23,6 @@ func main() {
 	commands.CreateDroplet(*createFlag)
 	commands.DestroyDroplet(*destroyFlag)
 	commands.GetDroplet(*getFlag)
+	commands.RebootDroplet(*rebootFlag)
 
 }
