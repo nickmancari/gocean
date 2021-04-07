@@ -10,6 +10,8 @@ import (
 	token "github.com/nickmancari/gocean/env"
 )
 
+var apiToken = token.ReadTokenFile(".token")
+
 const (
 	apiAddress = "https://api.digitalocean.com/v2/droplets"
 )
@@ -34,7 +36,6 @@ func CreateDroplet(flag string) interface{} {
 		return s
 	} else {
 
-		token := token.ReadTokenFile(".token")
 		name := flag
 
 		jsonData, err := json.Marshal(OceanJson{Name: name, Region: "nyc3", Size: "s-1vcpu-1gb", Image: "ubuntu-16-04-x64", Backups: "false", Ipv6: "true", User_Data: "null", Private_Networking: "null"})
@@ -48,7 +49,7 @@ func CreateDroplet(flag string) interface{} {
 		}
 
 		request.Header.Add("Content-Type", "application/json")
-		request.Header.Add("Authorization", "Bearer "+token)
+		request.Header.Add("Authorization", "Bearer "+apiToken)
 
 		client := &http.Client{}
 		response, err := client.Do(request)
@@ -78,9 +79,8 @@ func DestroyDroplet(flag string) interface{} {
 		}
 		return s
 	} else {
-		token := token.ReadTokenFile(".token")
 		dropletName := flag
-		r, err := fmt.Printf("Deleting: %s %s", dropletName, token)
+		r, err := fmt.Printf("Deleting: %s %s", dropletName, apiToken)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -88,8 +88,40 @@ func DestroyDroplet(flag string) interface{} {
 	}
 }
 
-func GetDroplet() {
+func GetDroplet(flag string) interface{} {
+	if flag == "" {
+		s, err := fmt.Println("")
+		if err != nil {
+			fmt.Println(err)
+		}
+		return s
+	} else {
+		request, err := http.NewRequest("GET", apiAddress + "/" + flag, nil)
+		if err != nil {
+			fmt.Println(err)
+		}
 
+		request.Header.Set("Content-Type", "application/json")
+		request.Header.Set("Authorization", "Bearer "+apiToken)
+
+		client := &http.Client{}
+		response, err := client.Do(request)
+		if err != nil {
+			fmt.Println(err)
+		}
+		defer response.Body.Close()
+
+		body, err := ioutil.ReadAll(response.Body)
+		if err != nil {
+			fmt.Println(err)
+		}
+		r, err := fmt.Println("response Body: ", string(body))
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		return r
+	}
 }
 
 func RebootDroplet() {
