@@ -31,3 +31,4 @@ $ gocean --token asdjbvuwefjw143r8f9s8vne9r283hr98654wrg46954b9w8rb41185b9nw84g
 ## Future Functionality:
 - [ ] Natively SSH into droplet from Gocean ($ gocean --ssh dropletname)
 - [ ] Better token storage and handling
+- [ ] Manage droplets by name, covnverting the droplet ID
