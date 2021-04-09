@@ -1,4 +1,4 @@
-package convert
+package main
 
 import (
 	"encoding/json"
@@ -22,7 +22,7 @@ type info struct {
 	Name string `json:"name"`
 }
 
-func ToID(s string) (int, error) {
+func main() {
 	request, err := http.NewRequest("GET", apiGetAddress, nil)
 	if err != nil {
 		fmt.Println("HTTP Request Error: ", err)
@@ -53,12 +53,24 @@ func ToID(s string) (int, error) {
 		return
 	}
 
+	//	r, err := fmt.Println(dropletStruct)
+	//	if err != nil {
+	//		fmt.Println("Struct Error: ", err)
+	//	}
+
+	//	for k := range dropletStruct.Droplets {
+	//		fmt.Println(dropletStruct.Droplets[k].ID, dropletStruct.Droplets[k].Name);
+	//	}
 	var r []int
-	search := s
+	search := "testing"
 	for _, id := range dropletStruct.Droplets {
 		if strings.Contains(id.Name, search) {
 			r = append(r, id.ID)
 		}
 	}
-	return r, nil
+	fmt.Println(r)
+	//	fmt.Println(r)
+	//	fmt.Println(dropletStruct.Droplets[0].ID, dropletStruct.Droplets[0].Name)
+	//	fmt.Println(r)
+
 }
