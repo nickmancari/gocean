@@ -72,19 +72,42 @@ func CreateDroplet(flag string) interface{} {
 	}
 }
 
-func DestroyDroplet(flag string) interface{} {
-	if flag == "" {
+func DestroyDroplet(f string) interface{} {
+	if f == "" {
 		s, err := fmt.Println("")
 		if err != nil {
 			fmt.Println("Error: ", err)
 		}
 		return s
 	} else {
-		dropletName := flag
-		r, err := fmt.Printf("Deleting: %s %s", dropletName, apiToken)
+		id, err := convert.ToID(f)
 		if err != nil {
 			fmt.Println(err)
 		}
+		request, err := http.NewRequest("DELETE", apiAddress+"/"+id, nil)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		request.Header.Set("Content-Type", "application/json")
+		request.Header.Set("Authorization", "Bearer "+apiToken)
+
+		client := &http.Client{}
+		response, err := client.Do(request)
+		if err != nil {
+			fmt.Println(err)
+		}
+		defer response.Body.Close()
+
+		body, err := ioutil.ReadAll(response.Body)
+		if err != nil {
+			fmt.Println(err)
+		}
+		r, err := fmt.Println("Response Body: ", string(body))
+		if err != nil {
+			fmt.Println(err)
+		}
+
 		return r
 	}
 }
