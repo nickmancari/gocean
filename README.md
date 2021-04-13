@@ -9,6 +9,10 @@ Gocean takes simple flags to manage Droplets from the command line:
 ```
 $ gocean --create testdroplet
 ```
+Control droplets by name from the commandline, instead of using Droplet IDs:
+```
+$ gocean --reboot testdroplet
+```
 ## Prerequisites:
 
 - Digital Ocean Account
