@@ -57,11 +57,6 @@ func ToID(s string) (string, error) {
 		}
 	}
 	c := fmt.Sprint(r)
-	//c := fmt.Sprintf("%d", r)
-	//replace := strings.NewReplacer("[", "\"", "]", "\"")
-	//conversion, err := fmt.Println(replace.Replace(c))
-	//if err != nil {
-	//	fmt.Println("Conversion Error: ", err)
-	//}
+
 	return c, nil
 }
