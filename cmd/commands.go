@@ -8,13 +8,14 @@ import (
 	"net/http"
 
 	token "github.com/nickmancari/gocean/env"
+	convert "github.com/nickmancari/gocean/tools"
 )
 
 var apiToken = token.ReadTokenFile(".token")
 
-const (
-	apiAddress = "https://api.digitalocean.com/v2/droplets"
-)
+
+var apiAddress string = "https://api.digitalocean.com/v2/droplets"
+
 
 type OceanJson struct {
 	Name               string `json: name`
@@ -124,8 +125,8 @@ func GetDroplet(flag string) interface{} {
 	}
 }
 
-func RebootDroplet(flag string) interface{} {
-	if flag == "" {
+func RebootDroplet(f string) int {
+	if f == "" {
 		s, err := fmt.Println("")
 		if err != nil {
 			fmt.Println(err)
@@ -133,7 +134,12 @@ func RebootDroplet(flag string) interface{} {
 		return s
 	} else {
 		jsonData := []byte(`{"type":"reboot"}`)
-		request, err := http.NewRequest("POST", apiAddress+"/"+flag+"/actions", bytes.NewBuffer(jsonData))
+		id, err := convert.ToID(f)
+		if err != nil {
+			fmt.Println("Conversion Error: ", err)
+		}
+
+		request, err := http.NewRequest("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -151,12 +157,12 @@ func RebootDroplet(flag string) interface{} {
 		if err != nil {
 			fmt.Println(err)
 		}
-		r, err := fmt.Println("Response Body: ", string(body))
+		z, err := fmt.Println("Response Body: ", string(body))
 		if err != nil {
 			fmt.Println(err)
 		}
 
-		return r
+		return z
 	}
 
 }
