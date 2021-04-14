@@ -27,7 +27,7 @@ func ReadTokenFile(path string) string {
 
 	token, err := ioutil.ReadFile(path)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Printf("Token File missing", err)
 	}
 	content := string(token)
 	r := strings.TrimSuffix(content, "\n")
