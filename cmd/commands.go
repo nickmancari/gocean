@@ -4,18 +4,15 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
-	"net/http"
 
+	connect "github.com/nickmancari/gocean/api"
 	token "github.com/nickmancari/gocean/env"
 	convert "github.com/nickmancari/gocean/tools"
 )
 
 var apiToken = token.ReadTokenFile(".token")
 
-
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
-
 
 type OceanJson struct {
 	Name               string `json: name`
@@ -28,45 +25,23 @@ type OceanJson struct {
 	Private_Networking string `json: private_networking`
 }
 
-func CreateDroplet(flag string) interface{} {
-	if flag == "" {
+func CreateDroplet(f string) interface{} {
+	if f == "" {
 		s, err := fmt.Println("")
 		if err != nil {
-			fmt.Println("Error: ", err)
+			fmt.Println(err)
 		}
 		return s
 	} else {
 
-		name := flag
+		name := f
 
 		jsonData, err := json.Marshal(OceanJson{Name: name, Region: "nyc3", Size: "s-1vcpu-1gb", Image: "ubuntu-16-04-x64", Backups: "false", Ipv6: "true", User_Data: "null", Private_Networking: "null"})
 		if err != nil {
 			fmt.Println(err)
 		}
 
-		request, err := http.NewRequest("POST", apiAddress, bytes.NewBuffer(jsonData))
-		if err != nil {
-			fmt.Println(err)
-		}
-
-		request.Header.Add("Content-Type", "application/json")
-		request.Header.Add("Authorization", "Bearer "+apiToken)
-
-		client := &http.Client{}
-		response, err := client.Do(request)
-		if err != nil {
-			fmt.Println(err)
-		}
-		defer response.Body.Close()
-
-		body, err := ioutil.ReadAll(response.Body)
-		if err != nil {
-			fmt.Println(err)
-		}
-		r, err := fmt.Println("response Body:", string(body))
-		if err != nil {
-			fmt.Println(err)
-		}
+		r := connect.Connection("POST", apiAddress, bytes.NewBuffer(jsonData))
 
 		return r
 	}
@@ -84,71 +59,30 @@ func DestroyDroplet(f string) interface{} {
 		if err != nil {
 			fmt.Println(err)
 		}
-		request, err := http.NewRequest("DELETE", apiAddress+"/"+id, nil)
-		if err != nil {
-			fmt.Println(err)
-		}
-
-		request.Header.Set("Content-Type", "application/json")
-		request.Header.Set("Authorization", "Bearer "+apiToken)
-
-		client := &http.Client{}
-		response, err := client.Do(request)
-		if err != nil {
-			fmt.Println(err)
-		}
-		defer response.Body.Close()
-
-		body, err := ioutil.ReadAll(response.Body)
-		if err != nil {
-			fmt.Println(err)
-		}
-		r, err := fmt.Println("Response Body: ", string(body))
-		if err != nil {
-			fmt.Println(err)
-		}
-
+		r := connect.Connection("DELETE", apiAddress+"/"+id, nil)
 		return r
 	}
 }
 
-func GetDroplet(flag string) interface{} {
-	if flag == "" {
+func GetDroplet(f string) interface{} {
+	if f == "" {
 		s, err := fmt.Println("")
 		if err != nil {
 			fmt.Println(err)
 		}
 		return s
 	} else {
-		request, err := http.NewRequest("GET", apiAddress+"/"+flag, nil)
+		id, err := convert.ToID(f)
 		if err != nil {
 			fmt.Println(err)
 		}
-
-		request.Header.Set("Content-Type", "application/json")
-		request.Header.Set("Authorization", "Bearer "+apiToken)
-
-		client := &http.Client{}
-		response, err := client.Do(request)
-		if err != nil {
-			fmt.Println(err)
-		}
-		defer response.Body.Close()
-
-		body, err := ioutil.ReadAll(response.Body)
-		if err != nil {
-			fmt.Println(err)
-		}
-		r, err := fmt.Println("response Body: ", string(body))
-		if err != nil {
-			fmt.Println(err)
-		}
+		r := connect.Connection("GET", apiAddress+"/"+id, nil)
 
 		return r
 	}
 }
 
-func RebootDroplet(f string) int {
+func RebootDroplet(f string) interface{} {
 	if f == "" {
 		s, err := fmt.Println("")
 		if err != nil {
@@ -162,30 +96,9 @@ func RebootDroplet(f string) int {
 			fmt.Println("Conversion Error: ", err)
 		}
 
-		request, err := http.NewRequest("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
-		if err != nil {
-			fmt.Println(err)
-		}
-		request.Header.Add("Content-Type", "application/json")
-		request.Header.Add("Authorization", "Bearer "+apiToken)
+		r := connect.Connection("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
 
-		client := &http.Client{}
-		response, err := client.Do(request)
-		if err != nil {
-			fmt.Println(err)
-		}
-		defer response.Body.Close()
-
-		body, err := ioutil.ReadAll(response.Body)
-		if err != nil {
-			fmt.Println(err)
-		}
-		z, err := fmt.Println("Response Body: ", string(body))
-		if err != nil {
-			fmt.Println(err)
-		}
-
-		return z
+		return r
 	}
 
 }

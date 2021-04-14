@@ -2,6 +2,7 @@ package connect
 
 import (
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 
@@ -10,9 +11,9 @@ import (
 
 var apiToken = token.ReadTokenFile(".token")
 
-func Connection(format, address, info string) interface{} {
+func Connection(method string, url string, info io.Reader) interface{} {
 
-	request, err := http.NewRequest(format, address, info)
+	request, err := http.NewRequest(method, url, info)
 	if err != nil {
 		fmt.Println(err)
 	}
