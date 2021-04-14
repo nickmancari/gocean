@@ -9,9 +9,13 @@ Gocean takes simple flags to manage Droplets from the command line:
 ```
 $ gocean --create testdroplet
 ```
-Control droplets by name from the commandline, instead of using Droplet IDs:
+Control droplets by name from the command line, instead of using Droplet IDs:
 ```
 $ gocean --reboot testdroplet
+```
+Even delete a droplet:
+```
+$ gocean --destroy testdroplet
 ```
 ## Prerequisites:
 
