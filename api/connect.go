@@ -9,7 +9,7 @@ import (
 	token "github.com/nickmancari/gocean/env"
 )
 
-var apiToken = token.ReadTokenFile(".token")
+var Token = token.ReadTokenFile(".token")
 
 func Connection(method string, url string, info io.Reader) interface{} {
 
@@ -19,7 +19,7 @@ func Connection(method string, url string, info io.Reader) interface{} {
 	}
 
 	request.Header.Add("Content-Type", "application/json")
-	request.Header.Add("Authorization", "Bearer "+apiToken)
+	request.Header.Add("Authorization", "Bearer "+Token)
 
 	client := &http.Client{}
 	response, err := client.Do(request)

@@ -10,8 +10,8 @@ import (
 	token "github.com/nickmancari/gocean/env"
 )
 
-var apiToken = token.ReadTokenFile(".token")
 var apiGetAddress = "https://api.digitalocean.com/v2/droplets"
+var Token = token.ReadTokenFile(".token")
 
 type droplets struct {
 	Droplets []info `json:"droplets"`
@@ -29,7 +29,7 @@ func ToID(s string) (string, error) {
 	}
 
 	request.Header.Add("Content-Type", "application/json")
-	request.Header.Add("Authorization", "Bearer "+apiToken)
+	request.Header.Add("Authorization", "Bearer "+Token)
 
 	client := &http.Client{}
 	response, err := client.Do(request)

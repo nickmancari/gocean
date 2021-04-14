@@ -6,11 +6,11 @@ import (
 	"fmt"
 
 	connect "github.com/nickmancari/gocean/api"
-	token "github.com/nickmancari/gocean/env"
+//	token "github.com/nickmancari/gocean/env"
 	convert "github.com/nickmancari/gocean/tools"
 )
 
-var apiToken = token.ReadTokenFile(".token")
+//var Token = token.ReadTokenFile(".token")
 
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
 
