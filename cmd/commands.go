@@ -27,11 +27,7 @@ type OceanJson struct {
 
 func CreateDroplet(f string) interface{} {
 	if f == "" {
-		s, err := fmt.Println("")
-		if err != nil {
-			fmt.Println(err)
-		}
-		return s
+		return ""
 	} else {
 
 		name := f
@@ -49,11 +45,7 @@ func CreateDroplet(f string) interface{} {
 
 func DestroyDroplet(f string) interface{} {
 	if f == "" {
-		s, err := fmt.Println("")
-		if err != nil {
-			fmt.Println("Error: ", err)
-		}
-		return s
+		return ""
 	} else {
 		id, err := convert.ToID(f)
 		if err != nil {
@@ -66,11 +58,7 @@ func DestroyDroplet(f string) interface{} {
 
 func GetDroplet(f string) interface{} {
 	if f == "" {
-		s, err := fmt.Println("")
-		if err != nil {
-			fmt.Println(err)
-		}
-		return s
+		return ""
 	} else {
 		id, err := convert.ToID(f)
 		if err != nil {
@@ -84,11 +72,7 @@ func GetDroplet(f string) interface{} {
 
 func RebootDroplet(f string) interface{} {
 	if f == "" {
-		s, err := fmt.Println("")
-		if err != nil {
-			fmt.Println(err)
-		}
-		return s
+		return ""
 	} else {
 		jsonData := []byte(`{"type":"reboot"}`)
 		id, err := convert.ToID(f)
