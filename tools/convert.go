@@ -39,3 +39,7 @@ func ToID(s string) (string, error) {
 
 	return c, nil
 }
+
+//func ToIP(s string) (string, error) {
+
+//}
