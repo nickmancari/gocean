@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	connect "github.com/nickmancari/gocean/api"
-	convert "github.com/nickmancari/gocean/tools"
 	shell "github.com/nickmancari/gocean/ssh"
+	convert "github.com/nickmancari/gocean/tools"
 )
 
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
@@ -89,6 +89,8 @@ func Shell(f string) interface{} {
 	if f == "" {
 		return ""
 	} else {
-		shell.Connection(f)
+		r := shell.Session(f)
+
+		return r
 	}
 }

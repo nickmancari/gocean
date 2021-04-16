@@ -6,7 +6,7 @@ import (
 	convert "github.com/nickmancari/gocean/tools"
 )
 
-func Connection(d string) interface{} {
+func Session(d string) interface{} {
 
 	ip, err := convert.ToIP(d)
 	if err != nil {
