@@ -26,6 +26,6 @@ func main() {
 	commands.DestroyDroplet(*destroyFlag)
 	commands.GetDroplet(*getFlag)
 	commands.RebootDroplet(*rebootFlag)
-	shell.Connection(*connectFlag)
+	commands.Shell(*connectFlag)
 
 }

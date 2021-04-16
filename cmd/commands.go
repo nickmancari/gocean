@@ -6,11 +6,9 @@ import (
 	"fmt"
 
 	connect "github.com/nickmancari/gocean/api"
-//	token "github.com/nickmancari/gocean/env"
 	convert "github.com/nickmancari/gocean/tools"
+	shell "github.som/nickmancari/gocean/ssh"
 )
-
-//var Token = token.ReadTokenFile(".token")
 
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
 
@@ -85,4 +83,12 @@ func RebootDroplet(f string) interface{} {
 		return r
 	}
 
+}
+
+func Shell(f string) interface{} {
+	if f == "" {
+		return ""
+	} else {
+		shell.Connection(f)
+	}
 }
