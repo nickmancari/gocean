@@ -7,7 +7,7 @@ import (
 
 	connect "github.com/nickmancari/gocean/api"
 	convert "github.com/nickmancari/gocean/tools"
-	shell "github.som/nickmancari/gocean/ssh"
+	shell "github.com/nickmancari/gocean/ssh"
 )
 
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
