@@ -54,7 +54,7 @@ func ToID(s string) (string, error) {
 	return c, nil
 }
 
-// Takes the input of droplet name and converts it
+// Takes the imput of droplet name and converts it
 // into the droplet IP address for network manipulation
 func ToIP(s string) (string, error) {
 	body := connect.ConvertConnection("GET", apiGetAddress, nil)
