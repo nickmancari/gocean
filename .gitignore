@@ -1,3 +1,5 @@
 testing/*
 .token
 tools/test_tools/
+ssh/test_ssh/
+ts_gocean.go
