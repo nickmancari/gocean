@@ -11,7 +11,7 @@ import (
 
 var Token = token.ReadTokenFile(".token")
 
-func Connection(method string, url string, info io.Reader) interface{} {
+func Connection(method string, url string, info io.Reader) int {
 
 	request, err := http.NewRequest(method, url, info)
 	if err != nil {

@@ -14,6 +14,10 @@ type droplets struct {
 	Droplets []info `json:"droplets"`
 }
 
+//type singledroplet struct {
+//	Droplet  []info	`json:"droplet"`
+//}
+
 type info struct {
 	ID       int      `json:"id"`
 	Name     string   `json:"name"`
@@ -54,7 +58,7 @@ func ToID(s string) (string, error) {
 	return c, nil
 }
 
-// Takes the input of droplet name and converts it
+// Takes the imput of droplet name and converts it
 // into the droplet IP address for network manipulation
 func ToIP(s string) (string, error) {
 	body := connect.ConvertConnection("GET", apiGetAddress, nil)
@@ -77,6 +81,16 @@ func ToIP(s string) (string, error) {
 
 }
 
-// func Response() {
+//func Response(b []byte) ([]info, error) {
+//
+//	dropletStruct := singledroplet{}
+//	er := json.Unmarshal(b, &dropletStruct)
+//	if er != nil {
+//		fmt.Println("Unmarshal Error: ", er)
+//	}
+//
+//	r := dropletStruct.Droplet
+//	
+//	return r, nil
 
 //}

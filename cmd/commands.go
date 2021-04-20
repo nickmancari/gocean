@@ -7,7 +7,7 @@ import (
 
 	connect "github.com/nickmancari/gocean/api"
 	shell "github.com/nickmancari/gocean/ssh"
-	convert "github.com/nickmancari/gocean/tools"
+	convert "github.com/nickmancari/gocean/data"
 )
 
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
@@ -63,7 +63,8 @@ func GetDroplet(f string) interface{} {
 			fmt.Println(err)
 		}
 		r := connect.Connection("GET", apiAddress+"/"+id, nil)
-
+		//r := connect.ConvertConnection("GET", apiAddress+"/"+id, nil)
+		//c, err := convert.Response(r)
 		return r
 	}
 }
