@@ -1,5 +1,5 @@
 testing/*
 .token
-tools/test_tools/
+data/test_tools/
 ssh/test_ssh/
 ts_gocean.go
