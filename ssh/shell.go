@@ -3,7 +3,7 @@ package shell
 import (
 	"fmt"
 
-	convert "github.com/nickmancari/gocean/tools"
+	convert "github.com/nickmancari/gocean/data"
 )
 
 func Session(d string) interface{} {
