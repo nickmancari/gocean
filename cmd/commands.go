@@ -62,10 +62,10 @@ func GetDroplet(f string) interface{} {
 		if err != nil {
 			fmt.Println(err)
 		}
-		r := connect.Connection("GET", apiAddress+"/"+id, nil)
-		//r := connect.ConvertConnection("GET", apiAddress+"/"+id, nil)
-		//c, err := convert.Response(r)
-		return r
+//testing	r := connect.Connection("GET", apiAddress+"/"+id, nil)
+		r := connect.ConvertConnection("GET", apiAddress+"/"+id, nil)
+		c, err := convert.StructuredResponse(r)
+		return c
 	}
 }
 
