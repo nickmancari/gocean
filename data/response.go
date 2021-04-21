@@ -15,13 +15,13 @@ type system struct {
 	Status string `json:"status"`
 }
 
-func StructuredResponse(b []byte) (interface{}, error) {
+func ToStructuredResponse(b []byte) (interface{}, error) {
 	dropletStruct := droplet{}
 	er := json.Unmarshal(b, &dropletStruct)
 	if er != nil {
 		fmt.Println("Unmarshal Error ", er)
 	}
-	r, _ := fmt.Printf("Droplet Name: %s\nID: %d\nStatus: %s\n", dropletStruct.Droplet.Name, dropletStruct.Droplet.ID, dropletStruct.Droplet.Status)
+	r, _ := fmt.Printf("\n|%6s|\n\n|ID: %6d||Status: %6s|\n\n", dropletStruct.Droplet.Name, dropletStruct.Droplet.ID, dropletStruct.Droplet.Status)
 
 	return r, nil
 
