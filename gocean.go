@@ -15,9 +15,9 @@ var getFlag = flag.String("droplet", "", "Get Info On Droplet")
 var rebootFlag = flag.String("reboot", "", "Reboot Specific Droplet")
 var connectFlag = flag.String("connect", "", "Initiate a SSH Connection to Droplet")
 
-func init() {
-	flag.StringVar(createFlag, "s", "", "Add")
-}
+//func init() {
+//	flag.StringVar(createFlag, "s", "", "Add")
+//}
 
 func main() {
 	flag.Parse()
