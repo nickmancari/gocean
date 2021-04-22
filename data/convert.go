@@ -3,6 +3,7 @@ package convert
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 	"strings"
 
 	connect "github.com/nickmancari/gocean/api"
@@ -31,7 +32,7 @@ type netInfo struct {
 	Type    string `json:"type"`
 }
 
-// Takes the input of droplet name and converts it 
+// Takes the input of droplet name and converts it
 // into the droplet ID to use with the DO API
 func ToID(s string) (string, error) {
 	body := connect.ConvertConnection("GET", apiGetAddress, nil)
@@ -46,7 +47,11 @@ func ToID(s string) (string, error) {
 	search := s
 	for _, id := range dropletStruct.Droplets {
 		if strings.Contains(id.Name, search) {
-			r = id.ID
+			r := fmt.Sprint(id.ID)
+			return r, nil
+		} else {
+			r, _ = fmt.Println("Droplet Not Found")
+			os.Exit(1)
 		}
 	}
 	c := fmt.Sprint(r)
