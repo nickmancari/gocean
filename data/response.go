@@ -3,8 +3,6 @@ package convert
 import (
 	"encoding/json"
 	"fmt"
-//	"os"
-//	"text/tabwriter"
 )
 
 type droplet struct {

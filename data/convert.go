@@ -3,7 +3,6 @@ package convert
 import (
 	"encoding/json"
 	"fmt"
-//	"os"
 	"errors"
 	"strings"
 
