@@ -35,9 +35,10 @@ func CreateDroplet(f string) (interface{}, error) {
 			return fmt.Println(err)
 		}
 
-		r := connect.Connection("POST", apiAddress, bytes.NewBuffer(jsonData))
+		r := connect.ConvertConnection("POST", apiAddress, bytes.NewBuffer(jsonData))
+		c, err := convert.ToStructuredResponse(r)
 
-		return r, nil
+		return c, nil
 	}
 }
 
@@ -50,13 +51,22 @@ func DestroyDroplet(f string) (interface{}, error) {
 			return fmt.Println(err)
 		}
 		r := connect.Connection("DELETE", apiAddress+"/"+id, nil)
-		return r, nil
+		if r > 0 {
+			c, err := fmt.Println("Droplet Deleted")
+			if err != nil {
+				fmt.Println(err)
+			}
+			return c, nil
+		}
+		return "", nil
 	}
 }
 
 func GetDroplet(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
+	} else if f == "all" {
+		return fmt.Println("All Droplets")
 	} else {
 		id, err := convert.ToID(f)
 		if err != nil {
