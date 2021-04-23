@@ -3,7 +3,8 @@ package convert
 import (
 	"encoding/json"
 	"fmt"
-	"os"
+//	"os"
+	"errors"
 	"strings"
 
 	connect "github.com/nickmancari/gocean/api"
@@ -43,20 +44,16 @@ func ToID(s string) (string, error) {
 		fmt.Println("Unmarshal Error: ", er)
 	}
 
-	var r int
+//	var r int
 	search := s
 	for _, id := range dropletStruct.Droplets {
 		if strings.Contains(id.Name, search) {
 			r := fmt.Sprint(id.ID)
 			return r, nil
-		} else {
-			r, _ = fmt.Println("Droplet Not Found")
-			os.Exit(1)
 		}
 	}
-	c := fmt.Sprint(r)
-
-	return c, nil
+	err := errors.New("Droplet Not Found")
+	return "", err
 }
 
 // Takes the input of droplet name and converts it

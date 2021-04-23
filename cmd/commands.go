@@ -54,18 +54,18 @@ func DestroyDroplet(f string) interface{} {
 	}
 }
 
-func GetDroplet(f string) interface{} {
+func GetDroplet(f string) (interface{}, error) {
 	if f == "" {
-		return ""
+		return "", nil
 	} else {
 		id, err := convert.ToID(f)
 		if err != nil {
-			fmt.Println(err)
+			return fmt.Println(err)
 		}
 //testing	r := connect.Connection("GET", apiAddress+"/"+id, nil)
 		r := connect.ConvertConnection("GET", apiAddress+"/"+id, nil)
 		c, err := convert.ToStructuredResponse(r)
-		return c
+		return c, nil
 	}
 }
 
