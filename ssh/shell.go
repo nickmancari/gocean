@@ -6,18 +6,18 @@ import (
 	convert "github.com/nickmancari/gocean/data"
 )
 
-func Session(d string) interface{} {
+func Session(d string) (interface{}, error) {
 
 	ip, err := convert.ToIP(d)
 	if err != nil {
-		fmt.Println(err)
+		return fmt.Println(err)
 	}
 
 	r, err := fmt.Println(ip)
 	if err != nil {
-		fmt.Println(err)
+		return fmt.Println(err)
 	}
 
-	return r
+	return r, nil
 
 }

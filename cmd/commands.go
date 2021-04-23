@@ -23,34 +23,34 @@ type OceanJson struct {
 	Private_Networking string `json: private_networking`
 }
 
-func CreateDroplet(f string) interface{} {
+func CreateDroplet(f string) (interface{}, error) {
 	if f == "" {
-		return ""
+		return "", nil
 	} else {
 
 		name := f
 
 		jsonData, err := json.Marshal(OceanJson{Name: name, Region: "nyc3", Size: "s-1vcpu-1gb", Image: "ubuntu-16-04-x64", Backups: "false", Ipv6: "true", User_Data: "null", Private_Networking: "null"})
 		if err != nil {
-			fmt.Println(err)
+			return fmt.Println(err)
 		}
 
 		r := connect.Connection("POST", apiAddress, bytes.NewBuffer(jsonData))
 
-		return r
+		return r, nil
 	}
 }
 
-func DestroyDroplet(f string) interface{} {
+func DestroyDroplet(f string) (interface{}, error) {
 	if f == "" {
-		return ""
+		return "", nil
 	} else {
 		id, err := convert.ToID(f)
 		if err != nil {
-			fmt.Println(err)
+			return fmt.Println(err)
 		}
 		r := connect.Connection("DELETE", apiAddress+"/"+id, nil)
-		return r
+		return r, nil
 	}
 }
 
@@ -69,29 +69,32 @@ func GetDroplet(f string) (interface{}, error) {
 	}
 }
 
-func RebootDroplet(f string) interface{} {
+func RebootDroplet(f string) (interface{}, error) {
 	if f == "" {
-		return ""
+		return "", nil
 	} else {
 		jsonData := []byte(`{"type":"reboot"}`)
 		id, err := convert.ToID(f)
 		if err != nil {
-			fmt.Println("Conversion Error: ", err)
+			return fmt.Println("Program Error: ", err)
 		}
 
 		r := connect.Connection("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
 
-		return r
+		return r, nil
 	}
 
 }
 
-func Shell(f string) interface{} {
+func Shell(f string) (interface{}, error) {
 	if f == "" {
-		return ""
+		return "", nil
 	} else {
-		r := shell.Session(f)
+		r, err := shell.Session(f)
+		if err != nil {
+			return fmt.Println(err)
+		}
 
-		return r
+		return r, nil
 	}
 }
