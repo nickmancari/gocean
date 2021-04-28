@@ -13,6 +13,10 @@ Control droplets by name from the command line, instead of using Droplet IDs:
 ```
 $ gocean --reboot testdroplet
 ```
+See an overview of your droplets in one clean command line view:
+```
+$ gocean --droplet all
+```
 Even delete a droplet:
 ```
 $ gocean --destroy testdroplet
