@@ -36,7 +36,7 @@ func CreateDroplet(f string) (interface{}, error) {
 		}
 
 		r := connect.ConvertConnection("POST", apiAddress, bytes.NewBuffer(jsonData))
-		c, err := convert.ToStructuredResponse(r)
+		c, err := convert.StructuredResponse(r)
 
 		return c, nil
 	}
@@ -52,7 +52,7 @@ func DestroyDroplet(f string) (interface{}, error) {
 		}
 		r := connect.Connection("DELETE", apiAddress+"/"+id, nil)
 		if r > 0 {
-			c, err := fmt.Println("Droplet Deleted")
+			c, err := fmt.Println("-----------------\n|Droplet Deleted|\n-----------------\n")
 			if err != nil {
 				fmt.Println(err)
 			}
@@ -74,7 +74,7 @@ func GetDroplet(f string) (interface{}, error) {
 		}
 //testing	r := connect.Connection("GET", apiAddress+"/"+id, nil)
 		r := connect.ConvertConnection("GET", apiAddress+"/"+id, nil)
-		c, err := convert.ToStructuredResponse(r)
+		c, err := convert.StructuredResponse(r)
 		return c, nil
 	}
 }

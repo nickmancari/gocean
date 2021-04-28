@@ -14,7 +14,7 @@ type system struct {
 	Name   string    `json:"name"`
 	Status string    `json:"status"`
 	Image  imageInfo `json:"image"`
-	Net    network   `json:"networks"`
+	Net    network   `json:"networks, omitempty"`
 }
 
 type imageInfo struct {
@@ -23,16 +23,16 @@ type imageInfo struct {
 }
 
 type network struct {
-	V4 []netDetail `json:"v4"`
+	V4 []netDetail `json:"v4, omitempty"`
 }
 
 type netDetail struct {
-	IP      string `json:"ip_address"`
+	IP      string `json:"ip_address, omitempty"`
 //	Netmask string `json:"netmask"`
 //	Gateway string `json:"gateway"`
 }
 
-func ToStructuredResponse(b []byte) (interface{}, error) {
+func StructuredResponse(b []byte) (interface{}, error) {
 	dropletStruct := droplet{}
 	er := json.Unmarshal(b, &dropletStruct)
 	if er != nil {

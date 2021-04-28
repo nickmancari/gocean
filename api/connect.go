@@ -32,7 +32,7 @@ func Connection(method string, url string, info io.Reader) int {
 	if err != nil {
 		fmt.Println(err)
 	}
-	r, err := fmt.Println("Response: ", string(body))
+	r, err := fmt.Println(string(body))
 	if err != nil {
 		fmt.Println(err)
 	}
