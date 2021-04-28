@@ -38,10 +38,11 @@ func StructuredResponse(b []byte) (interface{}, error) {
 	if er != nil {
 		return fmt.Println("Unmarshal Error ", er)
 	}
-		r, err := fmt.Printf("\n|%6s|\n-------------------------------------------------------\n|ID: %6d||Status: %6s||Distro: %6s||Network: %6s|\n\n", dropletStruct.Droplet.Name, dropletStruct.Droplet.ID, dropletStruct.Droplet.Status, dropletStruct.Droplet.Image, dropletStruct.Droplet.Net.V4)
-		if err != nil {
-			return fmt.Println(err)
-		}
+
+	r, err := fmt.Printf("\n|%6s|\n-------------------------------------------------------\n|ID: %6d||Status: %6s||Distro: %6s||Network: %6s|\n\n", dropletStruct.Droplet.Name, dropletStruct.Droplet.ID, dropletStruct.Droplet.Status, dropletStruct.Droplet.Image, dropletStruct.Droplet.Net.V4)
+	if err != nil {
+		return fmt.Println(err)
+	}
 
 	return r, nil
 

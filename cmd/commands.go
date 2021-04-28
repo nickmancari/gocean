@@ -66,7 +66,12 @@ func GetDroplet(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
 	} else if f == "all" {
-		return fmt.Println("All Droplets")
+		r := connect.ConvertConnection("GET", apiAddress, nil)
+		c, err := convert.AllDroplets(r)
+		if err != nil {
+			return fmt.Println(err)
+		}
+		return c, nil
 	} else {
 		id, err := convert.ToID(f)
 		if err != nil {

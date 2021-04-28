@@ -18,7 +18,14 @@ type droplets struct {
 type info struct {
 	ID       int      `json:"id"`
 	Name     string   `json:"name"`
+	Status	 string	  `json:"status"`
+	Image	 OsInfo	  `json:"image"`
 	Networks networks `json:"networks"`
+}
+
+type OsInfo struct {
+	Name	string	  `json:"name"`
+	Distro	string	  `json:"distribution"`
 }
 
 type networks struct {
@@ -27,13 +34,14 @@ type networks struct {
 
 type netInfo struct {
 	IP      string `json:"ip_address"`
-	Netmask string `json:"netmask"`
-	Gateway string `json:"gateway"`
-	Type    string `json:"type"`
+//	Netmask string `json:"netmask"`
+//	Gateway string `json:"gateway"`
+//	Type    string `json:"type"`
 }
 
 // Takes the input of droplet name and converts it
 // into the droplet ID to use with the DO API
+
 func ToID(s string) (string, error) {
 	body := connect.ConvertConnection("GET", apiGetAddress, nil)
 
@@ -43,7 +51,6 @@ func ToID(s string) (string, error) {
 		fmt.Println("Unmarshal Error: ", er)
 	}
 
-//	var r int
 	search := s
 	for _, id := range dropletStruct.Droplets {
 		if strings.Contains(id.Name, search) {
@@ -57,6 +64,7 @@ func ToID(s string) (string, error) {
 
 // Takes the input of droplet name and converts it
 // into the droplet IP address for network manipulation
+
 func ToIP(s string) (string, error) {
 	body := connect.ConvertConnection("GET", apiGetAddress, nil)
 
@@ -65,7 +73,7 @@ func ToIP(s string) (string, error) {
 	if er != nil {
 		fmt.Println("Unmarshal Error: ", er)
 	}
-//	var r string
+
 	search := s
 	for _, id := range dropletStruct.Droplets {
 		if strings.Contains(id.Name, search) {
@@ -75,5 +83,21 @@ func ToIP(s string) (string, error) {
 	}
 	err := errors.New("Droplet Not Found")
 	return "", err
+
+}
+
+func AllDroplets(b []byte) (interface{}, error) {
+	dropletStruct := droplets{}
+	er := json.Unmarshal(b, &dropletStruct)
+	if er != nil {
+		return fmt.Println("Unmarsahl Error: ", er)
+	}
+
+	for _, v := range dropletStruct.Droplets {
+		fmt.Printf("\n|%6s|\n-------------------------------------------------------\n|ID: %6d||Status: %6s||Distro: %6s||Network: %6s|\n\n", v.Name, v.ID, v.Status, v.Image, v.Networks.V4)
+	}
+	
+	return "", nil
+
 
 }
