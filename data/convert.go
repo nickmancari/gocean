@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	connect "github.com/nickmancari/gocean/api"
+	color "github.com/nickmancari/gocean/pkg"
 )
 
 var apiGetAddress = "https://api.digitalocean.com/v2/droplets"
@@ -29,7 +30,7 @@ type OsInfo struct {
 }
 
 type networks struct {
-	V4 []netInfo `json:"v4"`
+	V4 	[]netInfo `json:"v4"`
 }
 
 type netInfo struct {
@@ -94,7 +95,7 @@ func AllDroplets(b []byte) (interface{}, error) {
 	}
 
 	for _, v := range dropletStruct.Droplets {
-		fmt.Printf("\n|%6s|\n-------------------------------------------------------\n|ID: %6d||Status: %6s||Distro: %6s||Network: %6s|\n\n", v.Name, v.ID, v.Status, v.Image, v.Networks.V4)
+		fmt.Printf("\n|"+color.Cyan+"%6s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Green+"%6s"+color.Reset+"||Distro: %6s||Network: %6s|\n\n", v.Name, v.ID, v.Status, v.Image, v.Networks.V4)
 	}
 	
 	return "", nil

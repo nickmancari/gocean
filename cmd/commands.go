@@ -8,6 +8,7 @@ import (
 	connect "github.com/nickmancari/gocean/api"
 	shell "github.com/nickmancari/gocean/ssh"
 	convert "github.com/nickmancari/gocean/data"
+	color	"github.com/nickmancari/gocean/pkg"
 )
 
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
@@ -52,7 +53,7 @@ func DestroyDroplet(f string) (interface{}, error) {
 		}
 		r := connect.Connection("DELETE", apiAddress+"/"+id, nil)
 		if r > 0 {
-			c, err := fmt.Println("-----------------\n|Droplet Deleted|\n-----------------\n")
+			c, err := fmt.Println("-----------------\n|"+color.Red+"Droplet Deleted"+color.Reset+"|\n-----------------\n")
 			if err != nil {
 				fmt.Println(err)
 			}
