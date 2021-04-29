@@ -33,6 +33,7 @@ $ gocean --destroy testdroplet
 |`--reboot <droplet name>` | Reboot specific droplet |
 
 <br>
+
 ## Prerequisites:
 
 - Digital Ocean Account
