@@ -23,7 +23,7 @@ $ gocean --destroy testdroplet
 ```
 <br>
 
-| Comand | Description |
+| Command | Description |
 | --- | --- |
 |`--token <token>` | Add Digital Ocean API Token to gocean |
 |`--droplet <droplet name>` | Show brief overview of a specific droplet |
