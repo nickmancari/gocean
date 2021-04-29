@@ -21,6 +21,16 @@ Even delete a droplet:
 ```
 $ gocean --destroy testdroplet
 ```
+| Comand | Description |
+| --- | --- |
+|`--token` | Add Digital Ocean API Token to gocean |
+|`--droplet` | Show brief overview of a specific droplet |
+|`--droplet all` | Show brief overview of all droplets |
+|`--create` | Create droplet with name specified |
+|`--destroy` | Delete specified droplet |
+|`--reboot` | Reboot specific droplet |
+
+<br>
 ## Prerequisites:
 
 - Digital Ocean Account
