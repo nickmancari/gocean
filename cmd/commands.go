@@ -95,9 +95,10 @@ func RebootDroplet(f string) (interface{}, error) {
 			return fmt.Println("Program Error: ", err)
 		}
 
-		r := connect.Connection("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
+		r := connect.ConvertConnection("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
+		c, err := convert.Actions(r)
 
-		return r, nil
+		return c, nil
 	}
 
 }
