@@ -1,14 +1,16 @@
 package commands
 
 import (
+	"bufio"
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"os"
 
 	connect "github.com/nickmancari/gocean/api"
-	shell "github.com/nickmancari/gocean/ssh"
 	convert "github.com/nickmancari/gocean/data"
-	color	"github.com/nickmancari/gocean/pkg"
+	color "github.com/nickmancari/gocean/pkg"
+	shell "github.com/nickmancari/gocean/ssh"
 )
 
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
@@ -47,19 +49,31 @@ func DestroyDroplet(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
 	} else {
-		id, err := convert.ToID(f)
-		if err != nil {
-			return fmt.Println(err)
-		}
-		r := connect.Connection("DELETE", apiAddress+"/"+id, nil)
-		if r > 0 {
-			c, err := fmt.Println("-----------------\n|"+color.Red+"Droplet Deleted"+color.Reset+"|\n-----------------\n")
+		scanner := bufio.NewScanner(os.Stdin)
+
+		fmt.Println("\nAre you sure you want to delete this droplet? [Y/n]")
+		scanner.Scan()
+		text := scanner.Text()
+
+		if text == "Y" {
+			id, err := convert.ToID(f)
 			if err != nil {
-				fmt.Println(err)
+				return fmt.Println(err)
 			}
-			return c, nil
+			r := connect.Connection("DELETE", apiAddress+"/"+id, nil)
+			if r > 0 {
+				c, err := fmt.Println("-----------------\n|" + color.Red + "Droplet Deleted" + color.Reset + "|\n-----------------\n")
+				if err != nil {
+					fmt.Println(err)
+				}
+				return c, nil
+			}
+
+		} else {
+			return fmt.Println("Deleting Droplet Canceled")
 		}
-		return "", nil
+		var c string
+		return c, nil
 	}
 }
 
@@ -78,7 +92,7 @@ func GetDroplet(f string) (interface{}, error) {
 		if err != nil {
 			return fmt.Println(err)
 		}
-//testing	r := connect.Connection("GET", apiAddress+"/"+id, nil)
+		//testing	r := connect.Connection("GET", apiAddress+"/"+id, nil)
 		r := connect.ConvertConnection("GET", apiAddress+"/"+id, nil)
 		c, err := convert.StructuredResponse(r)
 		return c, nil
