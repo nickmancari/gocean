@@ -106,7 +106,7 @@ func RebootDroplet(f string) (interface{}, error) {
 		jsonData := []byte(`{"type":"reboot"}`)
 		id, err := convert.ToID(f)
 		if err != nil {
-			return fmt.Println("Program Error: ", err)
+			return fmt.Println(err)
 		}
 
 		r := connect.ConvertConnection("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))

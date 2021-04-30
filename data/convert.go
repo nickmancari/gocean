@@ -59,7 +59,7 @@ func ToID(s string) (string, error) {
 			return r, nil
 		}
 	}
-	err := errors.New("Droplet Not Found")
+	err := errors.New("\nDroplet Not Found\n")
 	return "", err
 }
 
@@ -82,7 +82,7 @@ func ToIP(s string) (string, error) {
 			return r, nil
 		}
 	}
-	err := errors.New("Droplet Not Found")
+	err := errors.New("\nDroplet Not Found\n")
 	return "", err
 
 }
@@ -95,7 +95,7 @@ func AllDroplets(b []byte) (interface{}, error) {
 	}
 
 	for _, v := range dropletStruct.Droplets {
-		fmt.Printf("\n|"+color.Cyan+"%6s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Green+"%6s"+color.Reset+"||Distro: %6s||Network: %6s|\n\n", v.Name, v.ID, v.Status, v.Image, v.Networks.V4)
+		fmt.Printf("\n|"+color.Cyan+"%s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Green+"%6s"+color.Reset+"||Distro: %6s||Network: "+color.Purple+"%6s"+color.Reset+"|\n\n", v.Name, v.ID, v.Status, v.Image, v.Networks.V4)
 	}
 	
 	return "", nil
