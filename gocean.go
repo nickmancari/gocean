@@ -14,6 +14,8 @@ var destroyFlag = flag.String("destroy", "", "Destroys Specified Droplet")
 var getFlag = flag.String("droplet", "", "Get Info On Droplet")
 var rebootFlag = flag.String("reboot", "", "Reboot Specific Droplet")
 var connectFlag = flag.String("connect", "", "Initiate a SSH Connection to Droplet")
+var shutdownFlag = flag.String("shutdown", "", "Shutdown a Droplet")
+var bootFlag = flag.String("boot", "", "Boot Up a Droplet")
 
 //func init() {
 //	flag.StringVar(createFlag, "s", "", "Add")
@@ -27,5 +29,7 @@ func main() {
 	commands.GetDroplet(*getFlag)
 	commands.RebootDroplet(*rebootFlag)
 	commands.Shell(*connectFlag)
+	commands.ShutdownDroplet(*shutdownFlag)
+	commands.BootDroplet(*bootFlag)
 
 }

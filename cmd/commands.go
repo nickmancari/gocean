@@ -117,6 +117,44 @@ func RebootDroplet(f string) (interface{}, error) {
 
 }
 
+
+func ShutdownDroplet(f string) (interface{}, error) {
+	if f == "" {
+		return "", nil
+	} else {
+		jsonData := []byte(`{"type":"power_off"}`)
+		id, err := convert.ToID(f)
+		if err != nil {
+			return fmt.Println(err)
+		}
+
+		r := connect.ConvertConnection("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
+		c, err := convert.Actions(r)
+
+		return c, nil
+	}
+
+}
+
+
+func BootDroplet(f string) (interface{}, error) {
+	if f == "" {
+		return "", nil
+	} else {
+		jsonData := []byte(`{"type":"power_on"}`)
+		id, err := convert.ToID(f)
+		if err != nil {
+			return fmt.Println(err)
+		}
+
+		r := connect.ConvertConnection("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
+		c, err := convert.Actions(r)
+
+		return c, nil
+	}
+
+}
+
 func Shell(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
