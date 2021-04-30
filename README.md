@@ -31,6 +31,8 @@ $ gocean --destroy testdroplet
 |`--create <droplet name>` | Create droplet with name specified |
 |`--destroy <droplet name>` | Delete specified droplet |
 |`--reboot <droplet name>` | Reboot specific droplet |
+|`--shutdown <droplet name>` | Power off specific droplet |
+|`--boot <droplet name>` | Turn on a specific droplet |
 
 <br>
 
