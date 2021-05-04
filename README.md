@@ -3,6 +3,8 @@
 <h2 align='center'>Manage Droplets From the Command Line With Digital Ocean APIs</h2>
 <br>
 
+![](https://img.shields.io/badge/Code-Go-informational?style=flat&logo=go&logoColor=white&color=00add8)
+
 # Using Gocean:
 
 Gocean takes simple flags to manage Droplets from the command line:
