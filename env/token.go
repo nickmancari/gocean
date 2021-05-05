@@ -12,6 +12,11 @@ func CreateTokenFile(t string) {
 
 	if t == "" {
 		return
+	} else if t == "rm" {
+		err := os.Remove(".token")
+		if err != nil {
+			fmt.Println(err)
+		}
 	} else {
 		file, err := os.Create(".token")
 		if err != nil {
