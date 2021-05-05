@@ -80,7 +80,7 @@ func DestroyDroplet(f string) (interface{}, error) {
 func GetDroplet(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
-	} else if f == "all" {
+	} else if f == "ls" {
 		r := connect.ConvertConnection("GET", apiAddress, nil)
 		c, err := convert.AllDroplets(r)
 		if err != nil {
