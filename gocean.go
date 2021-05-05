@@ -11,7 +11,7 @@ import (
 var tokenFlag = flag.String("token", "", "Creates Token File For DO API Connection")
 var createFlag = flag.String("create", "", "Create a Droplet")
 var destroyFlag = flag.String("destroy", "", "Destroys Specified Droplet")
-var getFlag = flag.String("droplet", "", "Get Info On Droplet")
+var getFlag = flag.String("droplet", "", "Get Info On Droplet\n 'all' Returns Info on All Droplets")
 var rebootFlag = flag.String("reboot", "", "Reboot Specific Droplet")
 var connectFlag = flag.String("connect", "", "Initiate a SSH Connection to Droplet")
 var shutdownFlag = flag.String("shutdown", "", "Shutdown a Droplet")
