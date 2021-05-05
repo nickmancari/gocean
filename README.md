@@ -4,6 +4,7 @@
 <br>
 
 ![](https://img.shields.io/badge/Code-Go-informational?style=flat&logo=go&logoColor=white&color=00add8)
+![](https://img.shields.io/badge/Cloud-DigitalOcean-informational?style=flat&logo=digitalocean&logoColor=white&color=0080ff)
 
 # Using Gocean:
 
@@ -28,6 +29,7 @@ $ gocean --destroy testdroplet
 | Command | Description |
 | --- | --- |
 |`--token <token>` | Add Digital Ocean API Token to gocean |
+|`--token rm`| Remove Token |
 |`--droplet <droplet name>` | Show brief overview of a specific droplet |
 |`--droplet all` | Show brief overview of all droplets |
 |`--create <droplet name>` | Create droplet with name specified |
