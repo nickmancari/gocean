@@ -9,7 +9,7 @@ import (
 	token "github.com/nickmancari/gocean/env"
 )
 
-var Token = token.ReadTokenFile(".token")
+var Token = token.ReadTokenFile("/usr/local/bin/.token")
 
 func Connection(method string, url string, info io.Reader) int {
 
