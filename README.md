@@ -27,9 +27,9 @@ $ gocean --destroy testdroplet
 <br>
 
 | Flag | Description | Common Commands
-| --- | --- |
-|`--token <token>` | Add Digital Ocean API token to gocean | `--token rm` remove token
-|`--droplet <droplet name>` | Show brief overview of a specific droplet | `droplet ls` list all droplets
+| --- | --- | --- |
+|`--token <token>` | Add Digital Ocean API token to gocean | `--token rm` remove token |
+|`--droplet <droplet name>` | Show brief overview of a specific droplet | `droplet ls` list all droplets |
 |`--create <droplet name>` | Create droplet with name specified |
 |`--destroy <droplet name>` | Delete specified droplet |
 |`--reboot <droplet name>` | Reboot specific droplet |
