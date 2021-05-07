@@ -22,5 +22,5 @@ func Actions(b []byte) (interface{}, error) {
 		fmt.Println("Unmarshal Error: ", er)
 	}
 
-	return fmt.Printf("\n"+color.Green+"%s %s\n"+color.Reset+"\n", actionStruct.Action.Type, actionStruct.Action.Status)
+	return fmt.Printf("\n"+color.Yellow+"%s %s\n"+color.Reset+"\n", actionStruct.Action.Type, actionStruct.Action.Status)
 }

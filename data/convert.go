@@ -78,8 +78,13 @@ func ToIP(s string) (string, error) {
 	search := s
 	for _, id := range dropletStruct.Droplets {
 		if strings.Contains(id.Name, search) {
-			r := fmt.Sprint(id.Networks.V4[0].IP)
-			return r, nil
+			if len(id.Networks.V4) > 1 {
+				r := fmt.Sprint(id.Networks.V4[1].IP)
+				return r, nil
+			} else {
+				r := fmt.Sprint(id.Networks.V4[0].IP)
+				return r, nil
+			}
 		}
 	}
 	err := errors.New("\nDroplet Not Found\n")
