@@ -101,9 +101,9 @@ func AllDroplets(b []byte) (interface{}, error) {
 
 	for _, v := range dropletStruct.Droplets {
 		if strings.Contains(v.Status, "active") {
-			fmt.Printf("\n|"+color.Cyan+"%s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Green+"%6s"+color.Reset+"||Distro: %6s||Network: "+color.Purple+"%6s"+color.Reset+"|\n\n", v.Name, v.ID, v.Status, v.Image, v.Networks.V4) 
+			fmt.Printf("\n|"+color.Cyan+"%s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Green+"%6s"+color.Reset+"||Distro: %6s||Network: "+color.Blue+"%6s"+color.Reset+"|\n\n", v.Name, v.ID, v.Status, v.Image, v.Networks.V4) 
 		} else {
-			fmt.Printf("\n|"+color.Cyan+"%s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Red+"%s"+color.Reset+"||Distro: %6s||Network: "+color.Purple+"%6s"+color.Reset+"|\n\n", v.Name, v.ID, v.Status, v.Image, v.Networks.V4)
+			fmt.Printf("\n|"+color.Cyan+"%s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Red+"%s"+color.Reset+"||Distro: %6s||Network: "+color.Blue+"%6s"+color.Reset+"|\n\n", v.Name, v.ID, v.Status, v.Image, v.Networks.V4)
 		}
 	}
 	

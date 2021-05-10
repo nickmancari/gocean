@@ -65,3 +65,4 @@ $ gocean --token asdjbvuwefjw143r8f9s8vne9r283hr98654wrg46954b9w8rb41185b9nw84g
 - [ ] Bash script installer
 - [ ] More robust control options
 - [X] Add color & better organise output
+- [ ] Refactor actions into one function
