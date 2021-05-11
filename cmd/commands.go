@@ -15,6 +15,10 @@ import (
 
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
 
+type Actions struct {
+	Type		string	`json:"type"`
+}
+
 type OceanJson struct {
 	Name               string `json: name`
 	Region             string `json: region`
@@ -155,6 +159,28 @@ func BootDroplet(f string) (interface{}, error) {
 
 }
 
+func Action(d string, a []string) (interface{}, error) {
+	if d == "" && len(a) == 0 {
+		return "", nil
+	} else {
+		jsonData, err := json.Marshal(Actions{Type:a[0],})
+		if err != nil {
+			fmt.Println(err)
+		}
+//testing		fmt.Println(string(jsonData))
+
+		id, err := convert.ToID(d)
+		if err != nil {
+			return fmt.Println(err)
+		}
+
+		r := connect.ConvertConnection("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
+//testing		c, err := fmt.Println(string(r))
+		c, err := convert.Actions(r)
+
+		return c, nil
+	}
+}
 func Shell(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil

@@ -3,6 +3,7 @@ package convert
 import (
 	"encoding/json"
 	"fmt"
+//	"strings"
 	color "github.com/nickmancari/gocean/pkg"
 )
 
@@ -40,11 +41,15 @@ func StructuredResponse(b []byte) (interface{}, error) {
 		return fmt.Println("Unmarshal Error ", er)
 	}
 
-	r, err := fmt.Printf("\n|"+color.Cyan+"%s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Green+"%6s"+color.Reset+"||Distro: %6s||Network: %6s|\n\n", dropletStruct.Droplet.Name, dropletStruct.Droplet.ID, dropletStruct.Droplet.Status, dropletStruct.Droplet.Image, dropletStruct.Droplet.Net.V4)
-	if err != nil {
-		return fmt.Println(err)
-	}
+//	for _, v := dropletStruct.Droplet {
+	v := dropletStruct.Droplet
+		if v.Status == "active" {
+			fmt.Printf("\n|"+color.Cyan+"%s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Green+"%6s"+color.Reset+"||Distro: %6s||Network: %6s|\n\n", v.Name, v.ID, v.Status, v.Image, v.Net.V4)
+		} else {
+			fmt.Printf("\n|"+color.Cyan+"%s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Red+"%6s"+color.Reset+"||Distro: %6s||Network: %6s|\n\n", v.Name, v.ID, v.Status, v.Image, v.Net.V4)
+		}
 
-	return r, nil
+
+	return "", nil
 
 }

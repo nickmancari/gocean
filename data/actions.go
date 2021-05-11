@@ -11,7 +11,7 @@ type action struct {
 }
 
 type ActionDetail struct {
-	Status string `json:"status"`
+	Status string `json:"status,omitempty"`
 	Type   string `json:"type"`
 }
 
