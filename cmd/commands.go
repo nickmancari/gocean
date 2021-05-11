@@ -103,6 +103,9 @@ func GetDroplet(f string) (interface{}, error) {
 	}
 }
 
+/* The "reboot", "shutdown", and "boot" individual flags will be replaced with
+the more manageable "action" flag. So these seperate functions will be removed */
+
 func RebootDroplet(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
@@ -160,7 +163,7 @@ func BootDroplet(f string) (interface{}, error) {
 }
 
 func Action(d string, a []string) (interface{}, error) {
-	if d == "" && len(a) == 0 {
+	if d == "" || len(d) > 1 && len(a) == 0 {
 		return "", nil
 	} else {
 		jsonData, err := json.Marshal(Actions{Type:a[0],})

@@ -3,6 +3,7 @@
 <h2 align='center'>Manage Droplets From the Command Line With Digital Ocean APIs</h2>
 <br>
 
+![](https://img.shields.io/badge/OS-Linux-informational?style=flat&logo=Linux&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Code-Go-informational?style=flat&logo=go&logoColor=white&color=00add8)
 ![](https://img.shields.io/badge/Cloud-DigitalOcean-informational?style=flat&logo=digitalocean&logoColor=white&color=0080ff)
 
