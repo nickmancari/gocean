@@ -163,8 +163,10 @@ func BootDroplet(f string) (interface{}, error) {
 }
 
 func Action(d string, a []string) (interface{}, error) {
-	if d == "" || len(d) > 0 && len(a) == 0 {
+	if d == "" && len(a) == 0 {
 		return "", nil
+	} else if len(d) > 0 && len(a) == 0 {
+		return fmt.Println("\nNo action chosen.\n")
 	} else {
 		jsonData, err := json.Marshal(Actions{Type:a[0],})
 		if err != nil {
@@ -184,6 +186,7 @@ func Action(d string, a []string) (interface{}, error) {
 		return c, nil
 	}
 }
+
 func Shell(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
