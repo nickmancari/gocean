@@ -163,7 +163,7 @@ func BootDroplet(f string) (interface{}, error) {
 }
 
 func Action(d string, a []string) (interface{}, error) {
-	if d == "" || len(d) > 1 && len(a) == 0 {
+	if d == "" || len(d) > 0 && len(a) == 0 {
 		return "", nil
 	} else {
 		jsonData, err := json.Marshal(Actions{Type:a[0],})
@@ -178,7 +178,7 @@ func Action(d string, a []string) (interface{}, error) {
 		}
 
 		r := connect.ConvertConnection("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
-//testing		c, err := fmt.Println(string(r))
+//		c, err := fmt.Println(string(r))
 		c, err := convert.Actions(r)
 
 		return c, nil

@@ -8,6 +8,7 @@ import (
 
 type action struct {
 	Action ActionDetail `json:"action"`
+	Message	string		`json:"message,omitempty"`
 }
 
 type ActionDetail struct {
@@ -21,6 +22,10 @@ func Actions(b []byte) (interface{}, error) {
 	if er != nil {
 		fmt.Println("Unmarshal Error: ", er)
 	}
-
-	return fmt.Printf("\n"+color.Yellow+"%s %s\n"+color.Reset+"\n", actionStruct.Action.Type, actionStruct.Action.Status)
+	
+	if len(actionStruct.Message) > 0 {
+		return fmt.Printf("\n%s\n\n", actionStruct.Message)
+	} else {
+		return fmt.Printf("\nDroplet Action: "+color.Yellow+"%s %s\n"+color.Reset+"\n", actionStruct.Action.Type, actionStruct.Action.Status)
+	}
 }
