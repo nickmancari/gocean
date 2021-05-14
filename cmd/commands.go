@@ -33,6 +33,10 @@ type OceanJson struct {
 func CreateDroplet(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
+	} else if f == "-i" {
+//		return fmt.Printf(fmt.Sprintf("%%-%ds", 110/2), fmt.Sprint(fmt.Sprintf("%%ds", 110/2),"\nDroplet Creation Interface\n"))
+
+		return fmt.Printf("%-55s", fmt.Sprintf("%55s", "my string to centre\n"))
 	} else {
 
 		name := f
