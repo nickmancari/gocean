@@ -11,6 +11,7 @@ import (
 	convert "github.com/nickmancari/gocean/data"
 	color "github.com/nickmancari/gocean/pkg"
 	shell "github.com/nickmancari/gocean/ssh"
+//	term "github.com/nickmancari/gocean/term"
 )
 
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
@@ -34,9 +35,7 @@ func CreateDroplet(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
 	} else if f == "-i" {
-//		return fmt.Printf(fmt.Sprintf("%%-%ds", 110/2), fmt.Sprint(fmt.Sprintf("%%ds", 110/2),"\nDroplet Creation Interface\n"))
-
-		return fmt.Printf("%-55s", fmt.Sprintf("%55s", "my string to centre\n"))
+		return fmt.Println("\n----------------------------\n|"+color.Blue+"Droplet Creation Interface"+color.Reset+"|\n----------------------------\n")
 	} else {
 
 		name := f
@@ -47,7 +46,8 @@ func CreateDroplet(f string) (interface{}, error) {
 		}
 
 		r := connect.ConvertConnection("POST", apiAddress, bytes.NewBuffer(jsonData))
-		c, err := convert.StructuredResponse(r)
+	//	c, err := convert.StructuredResponse(r)
+		c, _ := fmt.Println(string(r))
 
 		return c, nil
 	}
@@ -59,11 +59,11 @@ func DestroyDroplet(f string) (interface{}, error) {
 	} else {
 		scanner := bufio.NewScanner(os.Stdin)
 
-		fmt.Println("\nAre you sure you want to delete this droplet? [Y/n]")
+		fmt.Println("\nAre you sure you want to delete this droplet? [Yes/no]")
 		scanner.Scan()
 		text := scanner.Text()
 
-		if text == "Y" {
+		if text == "Yes" {
 			id, err := convert.ToID(f)
 			if err != nil {
 				return fmt.Println(err)
