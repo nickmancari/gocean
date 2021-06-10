@@ -108,8 +108,9 @@ func GetDroplet(f string) (interface{}, error) {
 }
 
 /* The "reboot", "shutdown", and "boot" individual flags will be replaced with
-the more manageable "action" flag. So these seperate functions will be removed */
-
+the more manageable "action" flag. So these seperate functions will be removed 
+after the droplet creation interface is implemented*/
+/*
 func RebootDroplet(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
@@ -165,7 +166,7 @@ func BootDroplet(f string) (interface{}, error) {
 	}
 
 }
-
+*/
 func Action(d string, a []string) (interface{}, error) {
 	if d == "" && len(a) == 0 {
 		return "", nil
