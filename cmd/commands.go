@@ -35,7 +35,8 @@ func CreateDroplet(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
 	} else if f == "-i" {
-		return fmt.Println("\n----------------------------\n|"+color.Blue+"Droplet Creation Interface"+color.Reset+"|\n----------------------------\n")
+		d, _ := DistroVersion(DistroSelection())
+		return DropletCreation(d)
 	} else {
 
 		name := f
