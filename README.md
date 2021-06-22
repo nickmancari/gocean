@@ -9,13 +9,9 @@
 
 # Using Gocean:
 
-Gocean takes simple flags to manage Droplets from the command line:
-```
-$ gocean --create testdroplet
-```
 Control droplets by name from the command line, instead of using Droplet IDs:
 ```
-$ gocean --reboot testdroplet
+$ gocean --action testdroplet reboot
 ```
 See an overview of your droplets in one clean command line view:
 ```
@@ -25,17 +21,19 @@ Even delete a droplet:
 ```
 $ gocean --destroy testdroplet
 ```
+Create a Droplet from the command line with interface:
+```
+$ gocean --create -i
+```
 <br>
 
 | Flag | Description | Common Commands |
 | --- | --- | --- |
-|`--token <token>` | Add Digital Ocean API token to gocean | `--token rm` remove token |
-|`--droplet <droplet name>` | Show brief overview of a specific droplet | `--droplet ls` list all droplets |
-|`--create <droplet name>` | Create droplet with name specified |
-|`--destroy <droplet name>` | Delete specified droplet |
-|`--reboot <droplet name>` | Reboot specific droplet |
-|`--shutdown <droplet name>` | Power off specific droplet |
-|`--boot <droplet name>` | Turn on a specific droplet |
+|`--token <token>` | Add Digital Ocean API Token to Gocean | `--token rm` remove token |
+|`--droplet <droplet name>` | Show Brief Overview of a Specific Droplet | `--droplet ls` list all droplets |
+|`--create -i` | Create Droplet with Gocean Simple Custom Interface |
+|`--destroy <droplet name>` | Delete Specified Droplet |
+|`--action <droplet name> <action>` | Control Droplet with Actions | `power_off` `power_on` `reboot` `shutdown` `power_cycle` are common actions |
 
 <br>
 
