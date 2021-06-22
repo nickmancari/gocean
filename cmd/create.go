@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	connect "github.com/nickmancari/gocean/api"
+	convert "github.com/nickmancari/gocean/data"
 	color "github.com/nickmancari/gocean/pkg"
 )
 
@@ -136,9 +137,6 @@ func DropletCreation(s *Create) (interface{}, error) {
 	var name string
 	fmt.Println("\nWhat Would You like to Name This Droplet?\n")
 	fmt.Scan(&name)
-	//if err != nil {
-	//	fmt.Println(err)
-	//}
 
 	return s.NewDroplet(name)
 }
@@ -160,10 +158,9 @@ func (v *Create) NewDroplet(name string) (interface{}, error) {
 	if err != nil {
 		return fmt.Println(err)
 	}
-	fmt.Println(string(marsh))
 
 	r := connect.ConvertConnection("POST", apiAddress, bytes.NewBuffer(marsh))
-	c, _ := fmt.Println(string(r))
+	c, _ := convert.StructuredResponse(r)
 
 	return c, nil
 }
