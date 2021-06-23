@@ -3,7 +3,9 @@ package commands
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"os"
 
 	connect "github.com/nickmancari/gocean/api"
 	convert "github.com/nickmancari/gocean/data"
@@ -34,11 +36,11 @@ func DistroSelection() *Create {
 		return &Create{Distro: "Fedora"}
 	} else if distro == "6" {
 		return &Create{Distro: "RancherOS"}
-	} // else {
-	//	return &Create{Distro: ""}
-	//	}
+	}
+	fmt.Println("Input Not Recognized")
+	os.Exit(1)
 
-	return &Create{Distro: ""}
+	return &Create{}
 
 }
 
@@ -129,6 +131,8 @@ func DistroVersion(s *Create) (*Create, error) {
 	} else if string(s.Distro) == "RancherOS" {
 		d := &Create{Version: "rancheros"}
 		return d, nil
+	} else if string(s.Distro) == "" {
+		return &Create{}, errors.New("Distro Not Selected")
 	}
 	return &Create{}, nil
 }

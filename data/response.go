@@ -30,8 +30,6 @@ type network struct {
 
 type netDetail struct {
 	IP      string `json:"ip_address,omitempty"`
-//	Netmask string `json:"netmask"`
-//	Gateway string `json:"gateway"`
 }
 
 func StructuredResponse(b []byte) (interface{}, error) {
@@ -41,10 +39,11 @@ func StructuredResponse(b []byte) (interface{}, error) {
 		return fmt.Println("Unmarshal Error ", er)
 	}
 
-//	for _, v := dropletStruct.Droplet {
 	v := dropletStruct.Droplet
 		if v.Status == "active" {
 			fmt.Printf("\n|"+color.Cyan+"%s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Green+"%6s"+color.Reset+"||Distro: %6s||Network: %6s|\n\n", v.Name, v.ID, v.Status, v.Image, v.Net.V4)
+		}else if v.Status == "new" {
+			fmt.Printf("\n|"+color.Cyan+"%s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Yellow+"%6s"+color.Reset+"||Distro: %6s||Network: %6s|\n\n", v.Name, v.ID, v.Status, v.Image, v.Net.V4)
 		} else {
 			fmt.Printf("\n|"+color.Cyan+"%s"+color.Reset+"|\n-------------------------------------------------------\n|ID: %6d||Status: "+color.Red+"%6s"+color.Reset+"||Distro: %6s||Network: %6s|\n\n", v.Name, v.ID, v.Status, v.Image, v.Net.V4)
 		}
