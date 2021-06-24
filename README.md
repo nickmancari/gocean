@@ -31,7 +31,7 @@ $ gocean --create -i
 | --- | --- | --- |
 |`--token <token>` | Add Digital Ocean API Token to Gocean | `--token rm` remove token |
 |`--droplet <droplet name>` | Show Brief Overview of a Specific Droplet | `--droplet ls` list all droplets |
-|`--create -i` | Create Droplet with Gocean Simple Custom Interface |
+|`--create -i` | Create Droplet with Simple Interface |
 |`--destroy <droplet name>` | Delete Specified Droplet |
 |`--action <droplet name> <action>` | Control Droplet with Actions | `power_off` `power_on` `reboot` `shutdown`|
 
