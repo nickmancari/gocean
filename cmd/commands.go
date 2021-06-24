@@ -109,15 +109,17 @@ func Action(d string, a []string) (interface{}, error) {
 	}
 }
 
+//placeholder
 func Shell(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
-	} else {
-		r, err := shell.Session(f)
-		if err != nil {
-			return fmt.Println(err)
-		}
-
-		return r, nil
+	} else if f == "-i" {
+	//	r, err := shell.Session(f)
+	//	if err != nil {
+	//		return fmt.Println(err)
+	//	}
+//
+//		return r, nil
+		return shell.Start(), nil
 	}
 }

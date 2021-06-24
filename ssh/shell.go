@@ -4,7 +4,13 @@ import (
 	"fmt"
 
 	convert "github.com/nickmancari/gocean/data"
+//	commands "github.com/nickmancari/gocean/cmd"
 )
+
+type SessionConfig struct {
+	IP	string
+
+}
 
 func Session(d string) (interface{}, error) {
 
@@ -19,5 +25,28 @@ func Session(d string) (interface{}, error) {
 	}
 
 	return r, nil
+
+}
+
+func Start() *SessionConfig {
+
+//	list, err := commands.GetDroplet("ls")
+//	if err != nil {
+//		fmt.Println(err)
+//	}
+//	fmt.Println(list)
+	fmt.Println("\nWhich Droplet Would You Like to Connect to?\n")
+	var droplet string
+	fmt.Scan(&droplet)
+	
+	ip, err := convert.ToIP(droplet)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return &SessionConfig{IP: ip}
+
+}
+
+func Run() {
 
 }
