@@ -55,7 +55,6 @@ func DistroVersion(s *Create) (*Create, error) {
 		if version == "1" {
 			d := &Create{Version: "ubuntu-20-04-x64"}
 			return d, nil
-			//		return fmt.Println(d, s.Distro)
 		} else if version == "2" {
 			d := &Create{Version: "ubuntu-18-04-x64"}
 			return d, nil

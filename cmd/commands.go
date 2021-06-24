@@ -11,7 +11,6 @@ import (
 	convert "github.com/nickmancari/gocean/data"
 	color "github.com/nickmancari/gocean/pkg"
 	shell "github.com/nickmancari/gocean/ssh"
-//	term "github.com/nickmancari/gocean/term"
 )
 
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
