@@ -1,4 +1,4 @@
-package shell
+package ssh
 
 import (
 	"fmt"
@@ -38,7 +38,7 @@ func Start() *SessionConfig {
 	fmt.Println("\nWhich Droplet Would You Like to Connect to?\n")
 	var droplet string
 	fmt.Scan(&droplet)
-	
+
 	ip, err := convert.ToIP(droplet)
 	if err != nil {
 		fmt.Println(err)

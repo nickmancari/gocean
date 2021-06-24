@@ -10,15 +10,14 @@ import (
 	connect "github.com/nickmancari/gocean/api"
 	convert "github.com/nickmancari/gocean/data"
 	color "github.com/nickmancari/gocean/pkg"
-	shell "github.com/nickmancari/gocean/ssh"
+	"github.com/nickmancari/gocean/ssh"
 )
 
 var apiAddress string = "https://api.digitalocean.com/v2/droplets"
 
 type Actions struct {
-	Type		string	`json:"type"`
+	Type string `json:"type"`
 }
-
 
 func CreateDroplet(f string) (interface{}, error) {
 	if f == "" {
@@ -85,14 +84,13 @@ func GetDroplet(f string) (interface{}, error) {
 	}
 }
 
-
 func Action(d string, a []string) (interface{}, error) {
 	if d == "" && len(a) == 0 {
 		return "", nil
 	} else if len(d) > 0 && len(a) == 0 {
 		return fmt.Println("\nNo action chosen.\n")
 	} else {
-		jsonData, err := json.Marshal(Actions{Type:a[0],})
+		jsonData, err := json.Marshal(Actions{Type: a[0]})
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -114,12 +112,13 @@ func Shell(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
 	} else if f == "-i" {
-	//	r, err := shell.Session(f)
-	//	if err != nil {
-	//		return fmt.Println(err)
-	//	}
-//
-//		return r, nil
-		return shell.Start(), nil
+		//	r, err := shell.Session(f)
+		//	if err != nil {
+		//		return fmt.Println(err)
+		//	}
+		//
+		//		return r, nil
+		return ssh.Start(), nil
 	}
+	return "", nil
 }
