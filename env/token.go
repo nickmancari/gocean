@@ -1,4 +1,4 @@
-package token
+package env
 
 import (
 	"fmt"

@@ -6,10 +6,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	token "github.com/nickmancari/gocean/env"
+	"github.com/nickmancari/gocean/env"
 )
 
-var Token = token.ReadTokenFile("/usr/local/bin/.token")
+var Token = env.ReadTokenFile("/usr/local/bin/.token")
 
 func Connection(method string, url string, info io.Reader) int {
 
