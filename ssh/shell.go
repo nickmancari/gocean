@@ -7,28 +7,11 @@ import (
 	"syscall"
 
 	convert "github.com/nickmancari/gocean/data"
-//	commands "github.com/nickmancari/gocean/cmd"
 )
 
 type SessionConfig struct {
 	IP	string
 	User	string
-
-}
-
-func Session(d string) (interface{}, error) {
-
-	ip, err := convert.ToIP(d)
-	if err != nil {
-		return fmt.Println(err)
-	}
-
-	r, err := fmt.Println(ip)
-	if err != nil {
-		return fmt.Println(err)
-	}
-
-	return r, nil
 
 }
 
@@ -43,7 +26,7 @@ func Start() *SessionConfig {
 		fmt.Println(err)
 	}
 
-	fmt.Println("\nWhich User?\n")
+	fmt.Println("\nUsername:\n")
 	var user string
 	fmt.Scan(&user)
 
