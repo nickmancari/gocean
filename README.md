@@ -25,6 +25,10 @@ Create a Droplet from the command line with interface:
 ```
 $ gocean --create -i
 ```
+Start an SSH Session into a Droplet with a setup interface:
+```
+$ gocean --connect -i
+```
 <br>
 
 | Flag | Description | Common Commands |
@@ -32,6 +36,7 @@ $ gocean --create -i
 |`--token <token>` | Add Digital Ocean API Token to Gocean | `--token rm` remove token |
 |`--droplet <droplet name>` | Show Brief Overview of a Specific Droplet | `--droplet ls` list all droplets |
 |`--create -i` | Create Droplet with Simple Interface |
+|`--connect -i` | SSH Session to Droplet with Interface |
 |`--destroy <droplet name>` | Delete Specified Droplet |
 |`--action <droplet name> <action>` | Control Droplet with Actions | `power_off` `power_on` `reboot` `shutdown`|
 
