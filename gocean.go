@@ -5,7 +5,7 @@ import (
 	"os"
 
 
-	commands "github.com/nickmancari/gocean/cmd"
+	"github.com/nickmancari/gocean/cmd"
 	token "github.com/nickmancari/gocean/env"
 )
 
@@ -23,10 +23,10 @@ var actionFlag = flag.String("action", "", "Dictate Action to A Droplet")
 func main() {
 	flag.Parse()
 	token.CreateTokenFile(*tokenFlag)
-	commands.CreateDroplet(*createFlag)
-	commands.DestroyDroplet(*destroyFlag)
-	commands.GetDroplet(*getFlag)
-	commands.Shell(*connectFlag)
-	commands.Action(*actionFlag, os.Args[3:])
+	cmd.CreateDroplet(*createFlag)
+	cmd.DestroyDroplet(*destroyFlag)
+	cmd.GetDroplet(*getFlag)
+	cmd.Shell(*connectFlag)
+	cmd.Action(*actionFlag, os.Args[3:])
 
 }
