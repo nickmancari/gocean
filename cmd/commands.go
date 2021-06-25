@@ -112,13 +112,14 @@ func Shell(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
 	} else if f == "-i" {
-		//	r, err := shell.Session(f)
-		//	if err != nil {
-		//		return fmt.Println(err)
-		//	}
-		//
-		//		return r, nil
-		return ssh.Start(), nil
+
+		list, err := GetDroplet("ls")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(list)
+		ssh.Start().Run()
+		return "", nil
 	}
 	return "", nil
 }

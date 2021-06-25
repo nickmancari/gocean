@@ -2,6 +2,9 @@ package ssh
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
+	"syscall"
 
 	convert "github.com/nickmancari/gocean/data"
 //	commands "github.com/nickmancari/gocean/cmd"
@@ -9,6 +12,7 @@ import (
 
 type SessionConfig struct {
 	IP	string
+	User	string
 
 }
 
@@ -30,11 +34,6 @@ func Session(d string) (interface{}, error) {
 
 func Start() *SessionConfig {
 
-//	list, err := commands.GetDroplet("ls")
-//	if err != nil {
-//		fmt.Println(err)
-//	}
-//	fmt.Println(list)
 	fmt.Println("\nWhich Droplet Would You Like to Connect to?\n")
 	var droplet string
 	fmt.Scan(&droplet)
@@ -43,10 +42,20 @@ func Start() *SessionConfig {
 	if err != nil {
 		fmt.Println(err)
 	}
-	return &SessionConfig{IP: ip}
+
+	fmt.Println("\nWhich User?\n")
+	var user string
+	fmt.Scan(&user)
+
+	return &SessionConfig{IP: ip, User: user}
 
 }
 
-func Run() {
-
+func (s SessionConfig) Run() {
+	connect, err := exec.LookPath("ssh")
+	if err != nil {
+		panic(err)
+	}
+	// +build linux,386 darwin,!cgo
+	syscall.Exec(connect, []string{"ssh", s.User+"@"+s.IP}, os.Environ())
 }
