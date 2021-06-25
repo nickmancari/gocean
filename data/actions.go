@@ -3,7 +3,7 @@ package convert
 import (
 	"encoding/json"
 	"fmt"
-	color "github.com/nickmancari/gocean/pkg"
+	"github.com/nickmancari/gocean/pkg/color"
 )
 
 type action struct {

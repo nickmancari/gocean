@@ -9,7 +9,7 @@ import (
 
 	connect "github.com/nickmancari/gocean/api"
 	convert "github.com/nickmancari/gocean/data"
-	color "github.com/nickmancari/gocean/pkg"
+	"github.com/nickmancari/gocean/pkg/color"
 	"github.com/nickmancari/gocean/ssh"
 )
 

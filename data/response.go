@@ -3,8 +3,7 @@ package convert
 import (
 	"encoding/json"
 	"fmt"
-//	"strings"
-	color "github.com/nickmancari/gocean/pkg"
+	"github.com/nickmancari/gocean/pkg/color"
 )
 
 type droplet struct {

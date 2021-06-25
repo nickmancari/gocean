@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	connect "github.com/nickmancari/gocean/api"
-	color "github.com/nickmancari/gocean/pkg"
+	"github.com/nickmancari/gocean/pkg/color"
 )
 
 var apiGetAddress = "https://api.digitalocean.com/v2/droplets"
