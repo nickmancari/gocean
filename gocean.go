@@ -22,6 +22,7 @@ var actionFlag = flag.String("action", "", "Dictate Action to A Droplet")
 
 func main() {
 	flag.Parse()
+
 	env.CreateTokenFile(*tokenFlag)
 	cmd.CreateDroplet(*createFlag)
 	cmd.DestroyDroplet(*destroyFlag)
