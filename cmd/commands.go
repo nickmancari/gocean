@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"os"
 
-	connect "github.com/nickmancari/gocean/api"
+	"github.com/nickmancari/gocean/api"
 	convert "github.com/nickmancari/gocean/data"
 	"github.com/nickmancari/gocean/pkg/color"
 	"github.com/nickmancari/gocean/ssh"
@@ -45,7 +45,7 @@ func DestroyDroplet(f string) (interface{}, error) {
 			if err != nil {
 				return fmt.Println(err)
 			}
-			r := connect.Connection("DELETE", apiAddress+"/"+id, nil)
+			r := api.Connection("DELETE", apiAddress+"/"+id, nil)
 			if r > 0 {
 				c, err := fmt.Println("-----------------\n|" + color.Red + "Droplet Deleted" + color.Reset + "|\n-----------------\n")
 				if err != nil {
@@ -66,7 +66,7 @@ func GetDroplet(f string) (interface{}, error) {
 	if f == "" {
 		return "", nil
 	} else if f == "ls" {
-		r := connect.ConvertConnection("GET", apiAddress, nil)
+		r := api.ConvertConnection("GET", apiAddress, nil)
 		c, err := convert.AllDroplets(r)
 		if err != nil {
 			return fmt.Println(err)
@@ -78,7 +78,7 @@ func GetDroplet(f string) (interface{}, error) {
 			return fmt.Println(err)
 		}
 
-		r := connect.ConvertConnection("GET", apiAddress+"/"+id, nil)
+		r := api.ConvertConnection("GET", apiAddress+"/"+id, nil)
 		c, err := convert.StructuredResponse(r)
 		return c, nil
 	}
@@ -100,7 +100,7 @@ func Action(d string, a []string) (interface{}, error) {
 			return fmt.Println(err)
 		}
 
-		r := connect.ConvertConnection("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
+		r := api.ConvertConnection("POST", apiAddress+"/"+id+"/actions", bytes.NewBuffer(jsonData))
 		c, err := convert.Actions(r)
 
 		return c, nil

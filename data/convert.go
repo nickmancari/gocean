@@ -6,7 +6,7 @@ import (
 	"errors"
 	"strings"
 
-	connect "github.com/nickmancari/gocean/api"
+	"github.com/nickmancari/gocean/api"
 	"github.com/nickmancari/gocean/pkg/color"
 )
 
@@ -44,7 +44,7 @@ type netInfo struct {
 // into the droplet ID to use with the DO API
 
 func ToID(s string) (string, error) {
-	body := connect.ConvertConnection("GET", apiGetAddress, nil)
+	body := api.ConvertConnection("GET", apiGetAddress, nil)
 
 	dropletStruct := droplets{}
 	er := json.Unmarshal(body, &dropletStruct)
@@ -67,7 +67,7 @@ func ToID(s string) (string, error) {
 // into the droplet IP address for network manipulation
 
 func ToIP(s string) (string, error) {
-	body := connect.ConvertConnection("GET", apiGetAddress, nil)
+	body := api.ConvertConnection("GET", apiGetAddress, nil)
 
 	dropletStruct := droplets{}
 	er := json.Unmarshal(body, &dropletStruct)
