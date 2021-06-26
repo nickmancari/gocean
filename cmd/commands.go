@@ -8,7 +8,7 @@ import (
 	"os"
 
 	"github.com/nickmancari/gocean/api"
-	convert "github.com/nickmancari/gocean/data"
+	"github.com/nickmancari/gocean/data/convert"
 	"github.com/nickmancari/gocean/pkg/color"
 	"github.com/nickmancari/gocean/ssh"
 )

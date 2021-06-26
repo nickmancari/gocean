@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"os"
 
-	connect "github.com/nickmancari/gocean/api"
-	convert "github.com/nickmancari/gocean/data"
+	"github.com/nickmancari/gocean/api"
+	"github.com/nickmancari/gocean/data/convert"
 	"github.com/nickmancari/gocean/pkg/color"
 )
 
@@ -162,7 +162,7 @@ func (v *Create) NewDroplet(name string) (interface{}, error) {
 		return fmt.Println(err)
 	}
 
-	r := connect.ConvertConnection("POST", apiAddress, bytes.NewBuffer(marsh))
+	r := api.ConvertConnection("POST", apiAddress, bytes.NewBuffer(marsh))
 	c, _ := convert.StructuredResponse(r)
 
 	return c, nil

@@ -6,7 +6,7 @@ import (
 	"os/exec"
 	"syscall"
 
-	convert "github.com/nickmancari/gocean/data"
+	"github.com/nickmancari/gocean/data/convert"
 )
 
 type SessionConfig struct {
