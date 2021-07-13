@@ -35,9 +35,6 @@ type networks struct {
 
 type netInfo struct {
 	IP      string `json:"ip_address"`
-//	Netmask string `json:"netmask"`
-//	Gateway string `json:"gateway"`
-//	Type    string `json:"type"`
 }
 
 // Takes the input of droplet name and converts it
